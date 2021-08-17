@@ -7,13 +7,13 @@ CREATE DATABASE craigslist;
 CREATE TABLE categories
 (
     id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
+    title TEXT NOT NULL
 );
 
 CREATE TABLE regions
 (
     id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
+    title TEXT NOT NULL
 );
 
 CREATE TABLE users
@@ -35,8 +35,8 @@ CREATE TABLE posts
     category_id INTEGER NOT NULL REFERENCES categories
 );
 
-INSERT INTO categories(title) VALUES('jobs', 'pets', 'fun', 'community');
-INSERT INTO regions(title) VALUES('Atlanta', 'San Francisco', 'Seattle', 'Los Angeles');
+INSERT INTO categories(title) VALUES('jobs'), ('pets'), ('fun'), ('community');
+INSERT INTO regions(title) VALUES('Atlanta'), ('San Francisco'), ('Seattle'), ('Los Angeles');
 INSERT INTO users(username, user_password, preferred_region_id)
 VALUES('tink', 'tink870', 4), ('champ', 'champ870', 4), ('Jo', 'Help123', 3);
 INSERT INTO posts(title, summary, user_id, region_id, category_id)

@@ -10,13 +10,10 @@ CREATE DATABASE air_traffic;
 CREATE TABLE airlines
 (
   id SERIAL PRIMARY KEY,
-  airline TEXT NOT NULL,
-  departure TIMESTAMP NOT NULL,
-  from_city TEXT NOT NULL,
-  from_country TEXT NOT NULL,
-  to_city TEXT NOT NULL,
-  to_country TEXT NOT NULL
+  airline_name TEXT NOT NULL,
+  trips INTEGER NOT NULL REFERENCES trips
 );
+
 
 CREATE TABLE tickets
 (
@@ -24,13 +21,23 @@ CREATE TABLE tickets
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   seat TEXT NOT NULL,
-  departure TIMESTAMP NOT NULL REFRENCES airlines,
+  departure TIMESTAMP NOT NULL REFERENCES trips,
+  arrival TIMESTAMP NOT NULL REFERENCES trips,
+  airline_name TEXT NOT NULL REFERENCES airlines,
+);
+
+
+CREATE TABLE trips
+(
+  id SERIAL PRIMARY KEY,
   arrival TIMESTAMP NOT NULL,
-  airline TEXT NOT NULL REFRENCES airlines,
-  from_city TEXT NOT NULL REFRENCES airlines,
-  from_country TEXT NOT NULL REFRENCES airlines,
-  to_city TEXT NOT NULL REFRENCES airlines,
-  to_country TEXT NOT NULL REFRENCES airlines
+  departure TIMESTAMP NOT NULL,
+  from_city TEXT NOT NULL,
+  from_country TEXT NOT NULL,
+  to_city TEXT NOT NULL,
+  to_country TEXT NOT NULL
+  airline_id INTEGER NOT NULL REFERENCES airlines,
+  ticket_id INTEGER NOT NULL REFERENCES tickets
 );
 
 
